@@ -1,0 +1,237 @@
+package Travel_itinerary_planner;
+import java.awt.EventQueue;
+import java.awt.*;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.BorderLayout;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+import javax.swing.BoxLayout;
+import java.awt.Font;
+import java.awt.Color;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.JRadioButton;
+
+public class log_in_page {
+
+	JFrame frame;
+	static JTextField user;
+	private JPasswordField pass;
+	private JLabel lblNewLabel;
+	static String username;
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					log_in_page window = new log_in_page();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the application.
+	 */
+	public log_in_page() {
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		
+		frame = new JFrame();
+		frame.setBounds(300,110, 750, 500);
+		frame.addWindowListener(new WindowAdapter() {
+			@Override
+			public void windowOpened(WindowEvent e) {
+			}
+		});
+		
+		frame.getContentPane().setLayout(null);
+		
+		JLabel lblNewLabel_7 = new JLabel("");
+		lblNewLabel_7.setIcon(new ImageIcon("C:\\Users\\Admin\\Documents\\p.jpeg"));
+		lblNewLabel_7.setBounds(0, 450, 733, 10);
+		frame.getContentPane().add(lblNewLabel_7);
+		
+		JLabel lblNewLabel_3 = new JLabel("Travel Itinerary Planner");
+		lblNewLabel_3.setBounds(180, 40, 365, 48);
+		lblNewLabel_3.setForeground(new Color(64, 0, 64));
+		lblNewLabel_3.setBackground(new Color(255, 255, 255));
+		lblNewLabel_3.setFont(new Font("Baskerville Old Face", Font.BOLD, 35));
+		frame.getContentPane().add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_6 = new JLabel("");
+		lblNewLabel_6.setIcon(new ImageIcon("C:\\Users\\Admin\\Documents\\p.jpeg"));
+		lblNewLabel_6.setBounds(0, 11, 734, 100);
+		frame.getContentPane().add(lblNewLabel_6);
+		
+		JLabel lblNewLabel_1 = new JLabel("USER NAME   :");
+		lblNewLabel_1.setBounds(200, 180, 144, 38);
+		lblNewLabel_1.setForeground(new Color(0, 0, 0));
+		lblNewLabel_1.setFont(new Font("Sitka Subheading", Font.BOLD, 17));
+		frame.getContentPane().add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("PASSWORD    :");
+		lblNewLabel_2.setBounds(200, 241, 129, 22);
+		lblNewLabel_2.setFont(new Font("Sitka Subheading", Font.BOLD, 17));
+		frame.getContentPane().add(lblNewLabel_2);
+		
+		user = new JTextField();
+		user.setBounds(360, 187, 125, 20);
+		frame.getContentPane().add(user);
+		user.setColumns(10);
+		
+		JButton btnNewButton = new JButton("log-in");
+		btnNewButton.setBounds(310, 309, 89, 27);
+		btnNewButton.addActionListener(new ActionListener() {
+			
+
+			public void actionPerformed(ActionEvent e) {
+			
+				try {int et =0;
+					String us = user.getText();
+					@SuppressWarnings("deprecation")
+					String ps = pass.getText();
+					System.out.println(us);
+					Class.forName("com.mysql.cj.jdbc.Driver");
+					System.out.println(ps);
+					Connection con = (Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/log-in","root","#fanofhegde2505");
+					System.out.println("1");
+					Statement st = con.createStatement();
+					System.out.println("1");
+					String sql = "Select * from access where iusername = '"+us+"'"+" or "+"accesscol = '"+ps+"'";
+					System.out.println("1");
+					ResultSet rs = st.executeQuery(sql);
+					System.out.println("1");
+					while(rs.next()) {
+					username = rs.getString("iusername");
+					System.out.println("1-");
+					String password = rs.getString("accesscol");
+					System.out.println("1-");
+
+					if(us.equals(username) && ps.equals(password)){
+					new dash01().setVisible(true);
+					System.out.println("true");
+					SwingUtilities.windowForComponent(btnNewButton).dispose();
+					et = 1;
+					}
+					else{
+					user.setText("");
+				    pass.setText("");
+					System.out.println("false");
+					JOptionPane.showMessageDialog(btnNewButton,"Incorrect password or username", "Error ",0);
+					
+					}
+					}
+					
+					if(et==0)	{
+						lblNewLabel.setText("Invalid Input");
+					}
+					
+				
+					
+				}
+				catch(Exception o) {
+					JOptionPane.showMessageDialog(btnNewButton, this, "Error while establishing connection failed",0);
+				}}
+			
+		});
+		btnNewButton.setForeground(new Color(255, 0, 0));
+		btnNewButton.setFont(new Font("Trebuchet MS", Font.BOLD, 15));
+		frame.getContentPane().add(btnNewButton);
+		
+		JButton btnNewButton_1 = new JButton("sign-up");
+		btnNewButton_1.setBounds(310, 360, 89, 27);
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				signup nf = new signup();
+				nf.setVisible(true);
+				SwingUtilities.windowForComponent(btnNewButton_1).dispose();
+			}
+		});
+		btnNewButton_1.setForeground(new Color(0, 0, 255));
+		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 13));
+		frame.getContentPane().add(btnNewButton_1);
+		
+		pass = new JPasswordField();
+		pass.setBounds(360, 240, 125, 20);
+		frame.getContentPane().add(pass);
+		
+		lblNewLabel = new JLabel("");
+		lblNewLabel.setBounds(323, 271, 125, 14);
+		lblNewLabel.setForeground(Color.RED);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 11));
+		frame.getContentPane().add(lblNewLabel);
+		
+		JButton btnNewButton_1_1 = new JButton("forget password");
+		btnNewButton_1_1.setBounds(500, 400, 145, 25);
+		btnNewButton_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				mail_e frame = new mail_e();
+				frame.setVisible(true);
+				SwingUtilities.windowForComponent(btnNewButton_1_1).dispose();
+			}
+		});
+		btnNewButton_1_1.setForeground(new Color(64, 0, 64));
+		btnNewButton_1_1.setFont(new Font("Tahoma", Font.BOLD, 13));
+		frame.getContentPane().add(btnNewButton_1_1);
+		
+		JRadioButton rdbtnNewRadioButton = new JRadioButton("Show Password");
+		rdbtnNewRadioButton.setForeground(new Color(0, 0, 0));
+		rdbtnNewRadioButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if(rdbtnNewRadioButton.isSelected()) {
+					 pass.setEchoChar((char)0);
+				}
+				else {
+					pass.setEchoChar('*');
+				}
+			}
+		});
+		rdbtnNewRadioButton.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		rdbtnNewRadioButton.setBounds(500, 240, 95, 20);
+		frame.getContentPane().add(rdbtnNewRadioButton);
+		
+		JLabel surya = new JLabel("");
+		surya.setBounds(50, 0, 635, 460);
+		surya.setIcon(new ImageIcon("C:\\Users\\Admin\\Documents\\9932-flight-ticket.gif"));
+		frame.getContentPane().add(surya);
+		
+		JLabel lblNewLabel_4 = new JLabel("");
+		lblNewLabel_4.setIcon(new ImageIcon("C:\\Users\\Admin\\Documents\\4127721ed30d1081015b82c99fa8623e.jpg"));
+		lblNewLabel_4.setBounds(0, 0, 50, 460);
+		frame.getContentPane().add(lblNewLabel_4);
+		
+		JLabel lblNewLabel_5 = new JLabel("\r\n");
+		lblNewLabel_5.setIcon(new ImageIcon("C:\\Users\\Admin\\Documents\\4127721ed30d1081015b82c99fa8623e.jpg"));
+		lblNewLabel_5.setBounds(684, 0, 50, 460);
+		frame.getContentPane().add(lblNewLabel_5);
+		
+		JLabel lblNewLabel_8 = new JLabel("New label");
+		lblNewLabel_8.setBounds(50, 500, 128, 128);
+		frame.getContentPane().add(lblNewLabel_8);
+	}
+} 

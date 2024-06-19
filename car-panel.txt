@@ -1,0 +1,157 @@
+package Travel_itinerary_planner;
+
+import java.awt.Color;
+import java.awt.Dimension;
+
+import javax.swing.JPanel;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import javax.swing.ImageIcon;
+import com.toedter.calendar.JDateChooser;
+import java.awt.Font;
+import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class cabpl extends JPanel {
+
+	private static final long serialVersionUID = 1L;
+	static JComboBox comboBox_2_1_1;
+	static JComboBox comboBox_2_2_1;
+	static JComboBox comboBox_2_2;
+	static JDateChooser dateChooser;
+	static JComboBox comboBox_1;
+	static JComboBox comboBox;
+	private JLabel lblNewLabel_2_1;
+	private JLabel lblNewLabel_2;
+	private JLabel lblNewLabel_3_1;
+	private JLabel lblNewLabel_3;
+	private JLabel lblNewLabel_4;
+	private JLabel lblNewLabel_1_1;
+	private JLabel lblNewLabel_1_1_2;
+	private JLabel lblNewLabel_1_2;
+	private JLabel lblChennai;
+	private JLabel lblNewLabel_5;
+
+	/**
+	 * Create the panel.
+	 */
+	public cabpl() {
+		setBackground(new Color(221, 236, 238));
+	       setPreferredSize(new Dimension(1080,180));
+	       setLayout(null);
+	      
+	      lblNewLabel_5 = new JLabel(" Mumbai");
+	      lblNewLabel_5.setFont(new Font("Tahoma", Font.BOLD, 20));
+	      lblNewLabel_5.setBounds(297, 40, 200, 100);
+	      add(lblNewLabel_5);
+	      
+	      lblChennai = new JLabel(" Chennai");
+	      lblChennai.setFont(new Font("Tahoma", Font.BOLD, 20));
+	      lblChennai.setBounds(30, 40, 200, 100);
+	      add(lblChennai);
+	      
+	      lblNewLabel_1_2 = new JLabel("  India");
+	      lblNewLabel_1_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
+	      lblNewLabel_1_2.setBounds(307, 116, 120, 14);
+	      add(lblNewLabel_1_2);
+	      
+	      lblNewLabel_1_1_2 = new JLabel(" To City/Catagory");
+	      lblNewLabel_1_1_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
+	      lblNewLabel_1_1_2.setBounds(307, 48, 153, 13);
+	      add(lblNewLabel_1_1_2);
+	      
+	      lblNewLabel_1_1 = new JLabel("  India");
+	      lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+	      lblNewLabel_1_1.setBounds(40, 116, 120, 14);
+	      add(lblNewLabel_1_1);
+	      
+	      lblNewLabel_4 = new JLabel(" From City");
+	      lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 13));
+	      lblNewLabel_4.setBounds(40, 47, 81, 14);
+	      add(lblNewLabel_4);
+	      
+	      lblNewLabel_3 = new JLabel("Travel Date");
+	      lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 13));
+	      lblNewLabel_3.setBounds(588, 45, 100, 20);
+	      add(lblNewLabel_3);
+	      
+	      lblNewLabel_3_1 = new JLabel("Jun'24");
+	      lblNewLabel_3_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
+	      lblNewLabel_3_1.setBounds(625, 74, 70, 50);
+	      add(lblNewLabel_3_1);
+	      
+	      lblNewLabel_2 = new JLabel("18");
+	      lblNewLabel_2.setForeground(Color.RED);
+	      lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 28));
+	      lblNewLabel_2.setBounds(588, 70, 46, 50);
+	      add(lblNewLabel_2);
+	      
+	      lblNewLabel_2_1 = new JLabel("Tuesday");
+	      lblNewLabel_2_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+	      lblNewLabel_2_1.setBounds(588, 115, 100, 20);
+	      add(lblNewLabel_2_1);
+	       
+	      comboBox = new JComboBox();
+	      comboBox.addActionListener(new ActionListener() {
+	      	public void actionPerformed(ActionEvent e) {
+	      		lblChennai.setVisible(false);
+	      	}
+	      });
+	       comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "Chennai", "Madurai", "Coimbatore", "Tiruchirappalli", "Cuddalore", "Dharmapuri"}));
+	       comboBox.setBounds(30, 40, 220, 100);
+	       add(comboBox);
+	       
+	        comboBox_1 = new JComboBox();
+	        comboBox_1.addActionListener(new ActionListener() {
+	        	public void actionPerformed(ActionEvent e) {
+	        		lblNewLabel_5.setVisible(false);
+	        	}
+	        });
+	       comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"", "Chennai", "Madurai", "Coimbatore", "Tiruchirappalli", "Cuddalore", "Dharmapuri"}));
+	       comboBox_1.setBounds(297, 40, 220, 100);
+	       add(comboBox_1);
+	       
+	       JLabel lblNewLabel_1 = new JLabel("");
+	       lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\Admin\\Downloads\\swap.png"));
+	       lblNewLabel_1.setBounds(255, 72, 46, 40);
+	       add(lblNewLabel_1);
+	       
+	       dateChooser = new JDateChooser();
+	       dateChooser.getCalendarButton().addActionListener(new ActionListener() {
+	       	public void actionPerformed(ActionEvent e) {
+	       		lblNewLabel_3_1.setVisible(false);
+	       		lblNewLabel_2.setVisible(false);
+	       		lblNewLabel_2_1.setVisible(false);
+	       	}
+	       });
+	       dateChooser.setBounds(578, 40, 150, 100);
+	       add(dateChooser);
+	       
+	       comboBox_2_2 = new JComboBox();
+	       comboBox_2_2.setModel(new DefaultComboBoxModel(new String[] {"01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"}));
+	       comboBox_2_2.setBounds(885, 40, 100, 40);
+	       add(comboBox_2_2);
+	       
+	       JLabel lblNewLabel = new JLabel("Pick Up");
+	       lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
+	       lblNewLabel.setBounds(765, 53, 100, 20);
+	       add(lblNewLabel);
+	       
+	        comboBox_2_1_1 = new JComboBox();
+	       comboBox_2_1_1.setModel(new DefaultComboBoxModel(new String[] {"AM", "PM"}));
+	       comboBox_2_1_1.setBounds(985, 40, 60, 40);
+	       add(comboBox_2_1_1);
+	       
+	       JLabel lblNoOfSeats = new JLabel("No of Seats");
+	       lblNoOfSeats.setFont(new Font("Tahoma", Font.BOLD, 15));
+	       lblNoOfSeats.setBounds(765, 108, 100, 20);
+	       add(lblNoOfSeats);
+	       
+	       comboBox_2_2_1 = new JComboBox();
+	       comboBox_2_2_1.setModel(new DefaultComboBoxModel(new String[] {"4", "5", "6", "7"}));
+	       comboBox_2_2_1.setBounds(885, 100, 100, 40);
+	       add(comboBox_2_2_1);
+
+	}
+}

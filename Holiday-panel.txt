@@ -1,0 +1,168 @@
+package Travel_itinerary_planner;
+
+import java.awt.Color;
+import java.awt.Dimension;
+
+import javax.swing.JPanel;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+import com.toedter.calendar.JDayChooser;
+import com.toedter.calendar.JDateChooser;
+import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class holidaypl extends JPanel {
+
+	private static final long serialVersionUID = 1L;
+	private JDateChooser dateChooser_1;
+
+	/**
+	 * Create the panel.
+	 */
+	public holidaypl() {
+		setBackground(new Color(221, 236, 238));
+	       setPreferredSize(new Dimension(1080,180));
+	       setLayout(null);
+	       
+	       JLabel lblNewLabel_2_1_1 = new JLabel("Tuesday");
+	       lblNewLabel_2_1_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+	       lblNewLabel_2_1_1.setBounds(527, 115, 100, 20);
+	       add(lblNewLabel_2_1_1);
+	       
+	       JLabel lblNewLabel_3_1_1 = new JLabel("Jun'24");
+	       lblNewLabel_3_1_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
+	       lblNewLabel_3_1_1.setBounds(565, 74, 70, 50);
+	       add(lblNewLabel_3_1_1);
+	       
+	       JLabel lblNewLabel_2 = new JLabel("Travel Date");
+	       lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 13));
+	       lblNewLabel_2.setBounds(527, 45, 100, 20);
+	       add(lblNewLabel_2);
+	       
+	       JLabel lblNewLabel_3 = new JLabel("18");
+	       lblNewLabel_3.setForeground(Color.RED);
+	       lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 28));
+	       lblNewLabel_3.setBounds(527, 70, 46, 50);
+	       add(lblNewLabel_3);
+	       
+	       JLabel lblNewLabel_1_1_1 = new JLabel("India");
+	       lblNewLabel_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+	       lblNewLabel_1_1_1.setBounds(284, 116, 120, 14);
+	       add(lblNewLabel_1_1_1);
+	       
+	       JLabel lblGoa = new JLabel(" Kerala");
+	       lblGoa.setHorizontalAlignment(SwingConstants.LEFT);
+	       lblGoa.setFont(new Font("Tahoma", Font.BOLD, 20));
+	       lblGoa.setBounds(277, 40, 200, 100);
+	       add(lblGoa);
+	       
+	       JLabel lblNewLabel_1_1_2_1 = new JLabel(" To City/Country/Catagory");
+	       lblNewLabel_1_1_2_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+	       lblNewLabel_1_1_2_1.setBounds(277, 48, 153, 13);
+	       add(lblNewLabel_1_1_2_1);
+	       
+	       JComboBox comboBox_1 = new JComboBox();
+	       comboBox_1.addActionListener(new ActionListener() {
+	       	public void actionPerformed(ActionEvent e) {
+	       		if(comboBox_1.getSelectedItem()!="") {
+	       			comboBox_1.setVisible(false);
+             		}
+	       	}
+	       });
+	       comboBox_1.setBounds(277, 40, 220, 100);
+	       add(comboBox_1);
+	       
+	       JLabel lblNewLabel_1_1 = new JLabel("India");
+	       lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+	       lblNewLabel_1_1.setBounds(39, 115, 120, 14);
+	       add(lblNewLabel_1_1);
+	       
+	       JLabel lblNewDelhi = new JLabel(" Current Location");
+	       lblNewDelhi.setHorizontalAlignment(SwingConstants.LEFT);
+	       lblNewDelhi.setFont(new Font("Tahoma", Font.BOLD, 20));
+	       lblNewDelhi.setBounds(30, 40, 200, 100);
+	       add(lblNewDelhi);
+	       
+	       JLabel lblNewLabel_1 = new JLabel("From City");
+	       lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+	       lblNewLabel_1.setBounds(40, 47, 81, 14);
+	       add(lblNewLabel_1);
+	       
+	       JComboBox comboBox = new JComboBox();
+	       comboBox.addActionListener(new ActionListener() {
+	       	public void actionPerformed(ActionEvent e) {
+	       		if(comboBox.getSelectedItem()!="") {
+	       			lblNewDelhi.setVisible(false);
+             		}
+	       	}
+	       });
+	       comboBox.setBounds(30, 40, 220, 100);
+	       add(comboBox);
+	       
+	       dateChooser_1 = new JDateChooser();
+	       dateChooser_1.getCalendarButton().addActionListener(new ActionListener() {
+	       	public void actionPerformed(ActionEvent e) {
+	       		lblNewLabel_3.setVisible(false);
+        		lblNewLabel_3_1_1.setVisible(false);
+        		lblNewLabel_2_1_1.setVisible(false);
+	       	}
+	       });
+	       dateChooser_1.setBounds(517, 40, 150, 100);
+	       add(dateChooser_1);
+	       
+	       JLabel lblNewLabel_4 = new JLabel("ADULTS (12y+)");
+	       lblNewLabel_4.setBackground(Color.WHITE);
+	       lblNewLabel_4.setBounds(721, 40, 100, 20);
+	       add(lblNewLabel_4);
+	       
+	       JLabel lblNewLabel_4_1 = new JLabel("on the day of travel");
+	       lblNewLabel_4_1.setForeground(new Color(145, 145, 145));
+	       lblNewLabel_4_1.setFont(new Font("Tahoma", Font.PLAIN, 9));
+	       lblNewLabel_4_1.setBackground(Color.WHITE);
+	       lblNewLabel_4_1.setBounds(721, 53, 100, 20);
+	       add(lblNewLabel_4_1);
+	       
+	       JComboBox comboBox_2 = new JComboBox();
+	       comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"", "1", "2", "3", "4", "5", "6", "7", "8", "9", "9+"}));
+	       comboBox_2.setBounds(721, 70, 100, 22);
+	       add(comboBox_2);
+	       
+	       JLabel lblNewLabel_4_2 = new JLabel("CHILDREN (2y - 12y )");
+	       lblNewLabel_4_2.setBackground(Color.WHITE);
+	       lblNewLabel_4_2.setBounds(888, 40, 120, 20);
+	       add(lblNewLabel_4_2);
+	       
+	       JLabel lblNewLabel_4_1_1 = new JLabel("on the day of travel");
+	       lblNewLabel_4_1_1.setForeground(new Color(145, 145, 145));
+	       lblNewLabel_4_1_1.setFont(new Font("Tahoma", Font.PLAIN, 9));
+	       lblNewLabel_4_1_1.setBackground(Color.WHITE);
+	       lblNewLabel_4_1_1.setBounds(888, 53, 100, 20);
+	       add(lblNewLabel_4_1_1);
+	       
+	       JComboBox comboBox_2_1 = new JComboBox();
+	       comboBox_2_1.setModel(new DefaultComboBoxModel(new String[] {"", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"}));
+	       comboBox_2_1.setBounds(888, 70, 100, 22);
+	       add(comboBox_2_1);
+	       
+	       JLabel lblNewLabel_4_3 = new JLabel("Whole Package");
+	       lblNewLabel_4_3.setFont(new Font("Tahoma", Font.PLAIN, 13));
+	       lblNewLabel_4_3.setBackground(Color.WHITE);
+	       lblNewLabel_4_3.setBounds(753, 95, 100, 20);
+	       add(lblNewLabel_4_3);
+	       
+	       JComboBox comboBox_2_2 = new JComboBox();
+	       comboBox_2_2.setModel(new DefaultComboBoxModel(new String[] {"", "₹10,000-₹15,000", "₹15,000-₹25,000", "₹25,000-₹50,000", "₹50000+"}));
+	       comboBox_2_2.setBounds(753, 116, 170, 22);
+	       add(comboBox_2_2);
+	       
+	       JLabel lblNewLabel_4_1_2 = new JLabel("(INR)");
+	       lblNewLabel_4_1_2.setForeground(new Color(145, 145, 145));
+	       lblNewLabel_4_1_2.setFont(new Font("Tahoma", Font.PLAIN, 9));
+	       lblNewLabel_4_1_2.setBackground(Color.WHITE);
+	       lblNewLabel_4_1_2.setBounds(845, 95, 100, 20);
+	       add(lblNewLabel_4_1_2);
+	}
+}

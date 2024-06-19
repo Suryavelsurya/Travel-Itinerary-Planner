@@ -1,0 +1,112 @@
+package Travel_itinerary_planner;
+
+import java.awt.EventQueue;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JScrollPane;
+import javax.swing.BoxLayout;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.Color;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class busscroll extends JFrame {
+
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private String fr;
+	private String to;
+	private ResultSet rs;
+    private busscrollpl[] r= new busscrollpl[100];
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					busscroll frame = new busscroll();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public busscroll() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 663, 501);
+		contentPane = new JPanel();
+		contentPane.setBackground(new Color(250, 252, 148));
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(55, 120, 531, 295);
+		contentPane.add(scrollPane);
+		
+		JPanel panel = new JPanel();
+		scrollPane.setViewportView(panel);
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		
+		JLabel lblBusTravelSeat = new JLabel("BUS TRAVEL SEAT BOOKING");
+		lblBusTravelSeat.setForeground(new Color(64, 0, 64));
+		lblBusTravelSeat.setFont(new Font("Stencil", Font.PLAIN, 28));
+		lblBusTravelSeat.setBounds(138, 45, 416, 39);
+		contentPane.add(lblBusTravelSeat);
+		
+		JButton btnNewButton = new JButton("back");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new dash01().setVisible(true);
+				dispose();
+			}
+		});
+		btnNewButton.setBackground(new Color(0, 0, 160));
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.setBounds(548, 428, 89, 23);
+		contentPane.add(btnNewButton);
+		fr =(String) busespl.comboBox.getSelectedItem();
+		to=(String) busespl.comboBox_1.getSelectedItem();
+		try {
+			int i=0;
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/log-in", "root", "#fanofhegde2505");
+			String sql="select * from swebus where from1='"+fr+"' and to1='"+to+"'";
+			PreparedStatement pst = con.prepareStatement(sql);
+			 rs=pst.executeQuery();
+			 while(rs.next()) {
+				r[i]=new busscrollpl();
+				r[i].g=rs.getString(1);
+				r[i].lblNewLabel.setText("  ★"+rs.getString(8));
+				r[i].busname.setText(rs.getString(2));
+				r[i].model.setText(rs.getString(7));
+				r[i].from.setText(""+rs.getString(3));
+				r[i].to.setText(""+rs.getString(4));
+				r[i]. depature.setText(""+rs.getString(5));
+				r[i]. arraival.setText(""+rs.getString(6));
+				r[i].p=""+rs.getString(9);
+				r[i].price.setText("₹ "+rs.getString(9));
+				panel.add(r[i]);
+				i++;
+				}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+}

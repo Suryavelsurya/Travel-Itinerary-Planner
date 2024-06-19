@@ -1,0 +1,335 @@
+package Travel_itinerary_planner;
+
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.print.PrinterException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import javax.swing.AbstractButton;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+
+import com.toedter.calendar.JDateChooser;
+
+public class carf extends JFrame {
+
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private JTextField textField_1;
+	private JTable table;
+	private JTextArea textArea;
+	private JTextField textField;
+	private JLabel lblNewLabel_5;
+
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					carf frame = new carf();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public carf() {
+		
+		
+		
+		//
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(-7, 0, 1436, 735);
+		contentPane = new JPanel();
+		contentPane.setBackground(new Color(227, 247, 253));
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JButton btnNewButton_3 = new JButton("back");
+		btnNewButton_3.setBackground(new Color(0, 0, 128));
+		btnNewButton_3.setForeground(new Color(255, 255, 255));
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try{
+					dash01 sf1 = new dash01();
+				sf1.setVisible(true);
+				SwingUtilities.windowForComponent(btnNewButton_3).dispose();}
+				catch(Exception rt) {
+					rt.printStackTrace();				}
+			}
+		});
+		
+		JLabel lblNewLabel_7 = new JLabel("");
+		lblNewLabel_7.setBounds(0, 0, 1370, 700);
+		contentPane.add(lblNewLabel_7);
+		btnNewButton_3.setFont(new Font("Tahoma", Font.BOLD, 13));
+		btnNewButton_3.setBounds(49, 630, 89, 23);
+		contentPane.add(btnNewButton_3);
+		
+		JLabel lblNewLabel_6 = new JLabel("PRICE");
+		lblNewLabel_6.setFont(new Font("Tahoma", Font.BOLD, 20));
+		lblNewLabel_6.setBounds(227, 370, 87, 27);
+		contentPane.add(lblNewLabel_6);
+		
+		textField_1 = new JTextField();
+		textField_1.setBounds(216, 400, 96, 20);
+		contentPane.add(textField_1);
+		textField_1.setColumns(10);
+		
+		JLabel lblNewLabel = new JLabel("From  "+(String)cabpl.comboBox.getSelectedItem());
+		lblNewLabel.setForeground(new Color(0, 0, 64));
+		lblNewLabel.setFont(new Font("Sitka Subheading", Font.BOLD, 22));
+		lblNewLabel.setBounds(49, 30, 244, 36);
+		contentPane.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("To  "+(String)cabpl.comboBox_1.getSelectedItem());
+		lblNewLabel_1.setForeground(new Color(0, 0, 64));
+		lblNewLabel_1.setFont(new Font("Sitka Subheading", Font.BOLD, 22));
+		lblNewLabel_1.setBounds(303, 35, 279, 27);
+		contentPane.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("Date   "+cabpl.dateChooser.getDate());
+		lblNewLabel_2.setFont(new Font("Sitka Text", Font.BOLD, 20));
+		lblNewLabel_2.setBounds(93, 98, 396, 27);
+		contentPane.add(lblNewLabel_2);
+		
+		JLabel lblNewLabel_3 = new JLabel("Time   "+(String)cabpl.comboBox_2_2.getSelectedItem() +" "+(String)cabpl.comboBox_2_1_1.getSelectedItem());
+		lblNewLabel_3.setFont(new Font("Sitka Text", Font.BOLD, 20));
+		lblNewLabel_3.setBounds(93, 136, 409, 36);
+		contentPane.add(lblNewLabel_3);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(50, 450, 466, 126);
+		contentPane.add(scrollPane);
+		
+		
+		
+		table = new JTable();
+		scrollPane.setViewportView(table);
+		table.setModel(new DefaultTableModel(
+			new Object[][] {
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+				{null, null, null, null, null},
+			},
+			new String[] {
+				"cab_id", "model", "seats", "pickup", "rating"
+			}
+		));
+		
+		JButton btnNewButton = new JButton("SEARCH");
+		btnNewButton.setBackground(new Color(0, 128, 0));
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.addActionListener(new ActionListener() {
+			private String f;
+			//private AbstractButton table;
+
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			f=(String)cabpl.comboBox.getSelectedItem();
+			System.out.println(f);
+			String ft=(String)cabpl.comboBox_1.getSelectedItem();
+			if(f.equals(ft))
+			{
+				JOptionPane.showMessageDialog(btnNewButton, this, "Enter valid location", 0, null);
+			}
+			else {
+				try {
+	                Class.forName("com.mysql.cj.jdbc.Driver");
+	                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/log-in", "root", "#fanofhegde2505");
+	                String sql = "SELECT * FROM cab_details where pickup = '"+f+"'";
+	                PreparedStatement pst = con.prepareStatement(sql);
+	                //pst.setString(1,f);
+	                ResultSet rs=pst.executeQuery();
+					DefaultTableModel dt=(DefaultTableModel)table.getModel();
+					dt.setRowCount(0);
+					while(rs.next()) {
+					
+					Object o[]= {rs.getString("cab_id"),rs.getString("model"),rs.getString("seats"),rs.getString("pickup"),rs.getString("rating")};
+					dt.addRow(o);
+					}
+					
+				}
+				    
+					
+				 catch (Exception ex) {
+	                
+	                JOptionPane.showMessageDialog(null, "Error occurred while searching.");
+	                ex.printStackTrace();
+	                 // Disable the Book Ticket button
+	            }
+				
+			}
+			}
+		});
+		btnNewButton.setFont(new Font("Tahoma", Font.BOLD, 20));
+		btnNewButton.setBounds(137, 231, 244, 36);
+		contentPane.add(btnNewButton);
+		
+		
+		
+		JLabel lblNewLabel_4 = new JLabel("Enter cab id:");
+		lblNewLabel_4.setFont(new Font("Sitka Text", Font.BOLD, 20));
+		lblNewLabel_4.setBounds(20, 315, 156, 29);
+		contentPane.add(lblNewLabel_4);
+		
+		
+		
+		 textArea = new JTextArea();
+		 textArea.setFont(new Font("Times New Roman", Font.BOLD, 15));
+			textArea.setBounds(720, 40, 606, 612);
+			contentPane.add(textArea);
+			textField = new JTextField();
+			textField.setBounds(175, 315, 96, 20);
+			contentPane.add(textField);
+			textField.setColumns(10);
+		
+		JButton btnNewButton_1 = new JButton("BOOK");
+		btnNewButton_1.setBackground(new Color(255, 0, 0));
+		btnNewButton_1.setForeground(new Color(255, 255, 255));
+		btnNewButton_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String f=textField.getText();
+				
+				try {
+				
+				       
+	                Class.forName("com.mysql.cj.jdbc.Driver");
+	                Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/log-in", "root", "#fanofhegde2505");
+	                String sql = "SELECT * FROM cab_details where cab_id= ?";
+	                PreparedStatement pst = con.prepareStatement(sql);
+	                pst.setString(1,f);
+	                ResultSet rs=pst.executeQuery();
+	                
+	                textArea.append("\tBOOKING DETAILS");
+					
+					
+					while(rs.next()) {
+					textField_1.setText(rs.getString("price"));
+				String o= rs.getString(1);
+				String h= rs.getString(2);
+				String i= rs.getString(3);
+				String p= rs.getString(4);
+				String oi= rs.getString(5);
+				textArea.append("\n\n");
+				textArea.append("\tcabid\t"+o+"\n");
+				textArea.append("\t-----------------\n");
+				textArea.append("\tmodel\t"+h+"\n");
+				textArea.append("\t-----------------\n");
+				
+				textArea.append("\tseats\t"+i+"\n");
+				textArea.append("\t-----------------\n");
+				textArea.append("\tpickup place\t"+p+"\n");
+				textArea.append("\t-----------------\n");
+				
+				textArea.append("\trating\t"+oi+"\n");
+				textArea.append("\n\n\n"+
+						
+        						"\t\tPick up place:\t"   +(String)cabpl.comboBox.getSelectedItem()+"\n"+
+        						"\t----------------------------------------------------------------------------------------------\n"+
+        						"\t\tDropping place:\t"+(String)cabpl.comboBox_1.getSelectedItem()+"\n"+
+        						"\t------------------------------------------------------------------------------------------------\n"+
+        						"\t\tDate  :\t\t"+cabpl.dateChooser.getDate()+"\n"+
+        						"\t-------------------------------------------------------------------------------------------------\n"+
+        						"\t\tTime  :\t\t"+(String)cabpl.comboBox_2_2.getSelectedItem()+"\n"+
+        						"\t-------------------------------------------------------------------------------------------------\n"+
+        						"\t\tAM/PM  :\t\t"+(String)cabpl.comboBox_2_1_1.getSelectedItem()+"\n"+
+        						"\t-------------------------------------------------------------------------------------------------\n"+
+        						"\t\tNo of Seats :\t\t"+(String)cabpl.comboBox_2_2_1.getSelectedItem()+"\n"+
+        						"\t-------------------------------------------------------------------------------------------------\n"+
+        						"\t\tPrice\t\t"+textField_1.getText()+"\n"+
+        						
+        						"======================================================================\n"+
+        						"          CONGRATULATIONS YOUR CAB HAS BEEN SUCESSFULLY BOOKED!!\n"
+        						
+        						
+        						
+        						
+        						);
+                    }
+				
+				
+					
+					}
+			
+					
+				 catch (Exception ex) {
+	                
+	                JOptionPane.showMessageDialog(null, "Error occurred while searching.");
+	                ex.printStackTrace();
+	                 // Disable the Book Ticket button
+	            }
+				
+				
+				
+			
+			}});
+		btnNewButton_1.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnNewButton_1.setBounds(300, 315, 128, 23);
+		contentPane.add(btnNewButton_1);
+		
+		JButton btnNewButton_2 = new JButton("PRINT");
+		btnNewButton_2.setBackground(new Color(0, 0, 160));
+		btnNewButton_2.setForeground(new Color(255, 255, 255));
+		btnNewButton_2.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				try {
+					textArea.print();
+				}
+				catch(PrinterException e1) {
+					e1.printStackTrace();
+					
+				}
+			}
+		});
+		btnNewButton_2.setBounds(454, 315, 121, 23);
+		contentPane.add(btnNewButton_2);
+		
+		lblNewLabel_5 = new JLabel("No of seats You Choosed :"+(String)cabpl.comboBox_2_2_1.getSelectedItem());
+		lblNewLabel_5.setFont(new Font("Sitka Text", Font.BOLD, 18));
+		lblNewLabel_5.setBounds(130, 195, 300, 25);
+		contentPane.add(lblNewLabel_5);
+		
+	
+
+		
+	}
+
+}

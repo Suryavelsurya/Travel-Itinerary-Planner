@@ -1,0 +1,236 @@
+package Travel_itinerary_planner;
+
+import java.awt.Dimension;
+
+import javax.swing.JPanel;
+import javax.swing.JLabel;
+import javax.swing.JRadioButton;
+import javax.swing.JComboBox;
+import java.awt.Font;
+import javax.swing.ImageIcon;
+import com.toedter.calendar.JDayChooser;
+import com.toedter.calendar.JDateChooser;
+import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import javax.swing.JButton;
+
+
+public class flightpl extends JPanel {
+
+	private static final long serialVersionUID = 1L;
+	static JComboBox comboBox_1;
+	private int i=0;
+	private JLabel lblNewLabel;
+	private JLabel lblTo;
+	private JLabel lblNewLabel_3;
+	private JLabel lblNewLabel_3_1;
+	private JLabel lblNewLabel_2_1;
+	static JRadioButton rdbtnNewRadioButton;
+	static JRadioButton rdbtnNewRadioButton_1;
+	static JRadioButton rdbtnNewRadioButton_2;
+	static JRadioButton rdbtnNewRadioButton_3;
+	static JComboBox comboBox_2;
+	static JComboBox comboBox_2_1;
+	static JDateChooser dateChooser;
+	
+   static JComboBox comboBox;
+	/**
+	 * Create the panel.
+	 */
+	public flightpl() {
+		setBackground(new Color(221, 236, 238));
+       setPreferredSize(new Dimension(1080,180));
+       setLayout(null);
+       
+       lblNewLabel = new JLabel(" Mumbai");
+       lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 20));
+       lblNewLabel.setBounds(30, 40, 200, 100);
+       add(lblNewLabel);
+       
+       JLabel lblNewLabel_1_1 = new JLabel("India");
+       lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+       lblNewLabel_1_1.setBounds(37, 121, 120, 14);
+       add(lblNewLabel_1_1);
+       
+       JLabel lblNewLabel_1_1_2_1 = new JLabel("To");
+       lblNewLabel_1_1_2_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+       lblNewLabel_1_1_2_1.setBounds(307, 49, 120, 14);
+       add(lblNewLabel_1_1_2_1);
+       
+       JLabel lblNewLabel_1_1_2 = new JLabel("From");
+       lblNewLabel_1_1_2.setFont(new Font("Tahoma", Font.PLAIN, 13));
+       lblNewLabel_1_1_2.setBounds(37, 49, 120, 14);
+       add(lblNewLabel_1_1_2);
+       
+       JLabel lblNewLabel_1_1_1 = new JLabel("India");
+       lblNewLabel_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+       lblNewLabel_1_1_1.setBounds(307, 121, 120, 14);
+       add(lblNewLabel_1_1_1);
+       
+       JLabel lblNewLabel_2 = new JLabel("Departure");
+       lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 13));
+       lblNewLabel_2.setBounds(590, 45, 100, 20);
+       add(lblNewLabel_2);
+       
+       lblNewLabel_2_1 = new JLabel("Tuesday");
+       lblNewLabel_2_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+       lblNewLabel_2_1.setBounds(590, 106, 100, 20);
+       add(lblNewLabel_2_1);
+       
+       lblNewLabel_3_1 = new JLabel("Jun'24");
+       lblNewLabel_3_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
+       lblNewLabel_3_1.setBounds(630, 73, 70, 50);
+       add(lblNewLabel_3_1);
+       
+       lblNewLabel_3 = new JLabel("18");
+       lblNewLabel_3.setForeground(new Color(255, 0, 0));
+       lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 28));
+       lblNewLabel_3.setBounds(590, 70, 46, 50);
+       add(lblNewLabel_3);
+       
+       lblTo = new JLabel(" Delhi");
+       lblTo.setFont(new Font("Tahoma", Font.BOLD, 20));
+       lblTo.setBounds(301, 40, 200, 100);
+       add(lblTo);
+       
+       rdbtnNewRadioButton = new JRadioButton("One way");
+       rdbtnNewRadioButton.addActionListener(new ActionListener() {
+       	public void actionPerformed(ActionEvent e) {
+       	 rdbtnNewRadioButton_1.setSelected(false);
+       	}
+       });
+       rdbtnNewRadioButton.setBackground(new Color(233, 243, 243));
+       rdbtnNewRadioButton.setBounds(28, 7, 109, 23);
+      //dbtnNewRadioButton.set
+       add(rdbtnNewRadioButton);
+       
+        rdbtnNewRadioButton_1 = new JRadioButton("Round Trip");
+        rdbtnNewRadioButton_1.addActionListener(new ActionListener() {
+        	public void actionPerformed(ActionEvent e) {
+        		 rdbtnNewRadioButton.setSelected(false);
+}
+        });
+       rdbtnNewRadioButton_1.setBackground(new Color(233, 243, 243));
+       rdbtnNewRadioButton_1.setBounds(161, 7, 109, 23);
+       add(rdbtnNewRadioButton_1);
+       
+       JLabel lblNewLabel_1 = new JLabel("");
+       lblNewLabel_1.addMouseListener(new MouseAdapter() {
+       
+
+		@Override
+       	public void mouseClicked(MouseEvent e) {
+       		
+       		if(i==0) {
+       		comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "",""}));
+       		comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"", "gvhgf", "cfbcfn"}));
+       		++i;
+       		}
+       		else {
+       		 comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "gvhgf", "cfbcfn"}));;
+             comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"", "",""}));
+             --i;
+       		}
+       	}
+       });
+       lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\Admin\\Downloads\\swap.png"));
+       lblNewLabel_1.setBounds(260, 65, 46, 40);
+       add(lblNewLabel_1);
+       
+       comboBox_1 = new JComboBox();
+       comboBox_1.addActionListener(new ActionListener() {
+       	public void actionPerformed(ActionEvent e) {
+       		if(comboBox_1.getSelectedItem()!="") {
+          		 lblTo.setVisible(false);
+          		}
+       	}
+       });
+       comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"", "Mumbai", "Andhra Pradesh(Amaravati)", "Arunachal Pradesh(Itanagar)", "Assam(Dispur)", "Bihar(Patna)", "Chhattisgarh(Raipur)", "Coimbatore", "Tiruchirappalli", "Bengaluru ", "Goa(Panaji)", "Gujarat(Gandhinagar)", "Haryana(Chandigarh)", "Himachal Pradesh(Shimla)", "Jharkhand(Ranchi)", "Karnataka(Bangalore)", "Kannyakumari", "Salem", "Kerala", "Kerala(Thiruvananthapuram)", "Madhya Pradesh(Bhopal)", "Maharashtra(Mumbai)", "Manipur(Imphal)", "Meghalaya(Shillong)", "Mizoram(Aizawl)", "Nagaland(Kohima)", "Odisha(Bhubaneshwar)", "Punjab(Chandigarh)", "Rajasthan(Jaipur)", "Sikkim(Gangtok)", "Tamil Nadu(Chennai)", "Telangana(Hyderabad)", "Tripura(Agartala)", "Uttarakhand(Dehradun)", "Uttar Pradesh(Lucknow)", "West Bengal(Kolkata)"}));
+       comboBox_1.setBounds(301, 40, 220, 100);
+       add(comboBox_1);
+       
+       dateChooser = new JDateChooser();
+       dateChooser.getCalendarButton().addActionListener(new ActionListener() {
+    	   
+       	public void actionPerformed(ActionEvent e) {
+       		if(dateChooser.isShowing()) {
+          		 lblNewLabel_3.setVisible(false);
+          		lblNewLabel_3_1.setVisible(false);
+          		lblNewLabel_2_1.setVisible(false);
+          		
+          		}
+       	}
+       });
+       dateChooser.setBounds(583, 40, 150, 100);
+       add(dateChooser);
+       
+       comboBox_2 = new JComboBox();
+       comboBox_2.setModel(new DefaultComboBoxModel(new String[] {"", "1", "2", "3", "4", "5", "6", "7", "8", "9", "9+"}));
+      comboBox_2.setBounds(791, 70, 100, 22);
+       add(comboBox_2);
+       
+       comboBox_2_1 = new JComboBox();
+       comboBox_2_1.setModel(new DefaultComboBoxModel(new String[] {"", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"}));
+       comboBox_2_1.setBounds(941, 70, 100, 22);
+       add(comboBox_2_1);
+       
+       JLabel lblNewLabel_4 = new JLabel("ADULTS (12y+)");
+       lblNewLabel_4.setBackground(new Color(255, 255, 255));
+       lblNewLabel_4.setBounds(791, 40, 100, 20);
+       add(lblNewLabel_4);
+       
+       JLabel lblNewLabel_4_1 = new JLabel("on the day of travel");
+       lblNewLabel_4_1.setForeground(new Color(145, 145, 145));
+       lblNewLabel_4_1.setFont(new Font("Tahoma", Font.PLAIN, 9));
+       lblNewLabel_4_1.setBackground(Color.WHITE);
+       lblNewLabel_4_1.setBounds(791, 53, 100, 20);
+       add(lblNewLabel_4_1);
+       
+       JLabel lblNewLabel_4_2 = new JLabel("CHILDREN (2y - 12y )");
+       lblNewLabel_4_2.setBackground(Color.WHITE);
+       lblNewLabel_4_2.setBounds(941, 39, 120, 20);
+       add(lblNewLabel_4_2);
+       
+       JLabel lblNewLabel_4_1_1 = new JLabel("on the day of travel");
+       lblNewLabel_4_1_1.setForeground(new Color(145, 145, 145));
+       lblNewLabel_4_1_1.setFont(new Font("Tahoma", Font.PLAIN, 9));
+       lblNewLabel_4_1_1.setBackground(Color.WHITE);
+       lblNewLabel_4_1_1.setBounds(941, 53, 100, 20);
+       add(lblNewLabel_4_1_1);
+       
+       rdbtnNewRadioButton_2 = new JRadioButton("Premium");
+       rdbtnNewRadioButton_2.addActionListener(new ActionListener() {
+       	public void actionPerformed(ActionEvent e) {
+       	 rdbtnNewRadioButton_3.setSelected(false);
+       		
+       	}
+       });
+       rdbtnNewRadioButton_2.setBounds(791, 117, 100, 23);
+       add(rdbtnNewRadioButton_2);
+       
+        rdbtnNewRadioButton_3 = new JRadioButton("Economy");
+       rdbtnNewRadioButton_3.addActionListener(new ActionListener() {
+       	public void actionPerformed(ActionEvent e) {
+       		rdbtnNewRadioButton_2.setSelected(false);
+       	}
+       });
+       rdbtnNewRadioButton_3.setBounds(941, 117, 100, 23);
+       add(rdbtnNewRadioButton_3);
+       
+        comboBox = new JComboBox();
+        comboBox.addActionListener(new ActionListener() {
+           	public void actionPerformed(ActionEvent e) {
+           		if(comboBox.getSelectedItem()!="") {
+              		 lblNewLabel.setVisible(false);
+              		}
+           	}
+           });
+       comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "New Delhi", "Andhra Pradesh(Amaravati)", "Arunachal Pradesh(Itanagar)", "Assam(Dispur)", "Bihar(Patna)", "Chhattisgarh(Raipur)", "Chennai", "Salem", "Dindigul", "Madurai", "Goa(Panaji)", "Gujarat(Gandhinagar)", "Haryana(Chandigarh)", "Himachal Pradesh(Shimla)", "Jharkhand(Ranchi)", "Karnataka(Bangalore)", "Kerala(Thiruvananthapuram)", "Madhya Pradesh(Bhopal)", "Maharashtra(Mumbai)", "Manipur(Imphal)", "Meghalaya(Shillong)", "Mizoram(Aizawl)", "Nagaland(Kohima)", "Odisha(Bhubaneshwar)", "Punjab(Chandigarh)", "Rajasthan(Jaipur)", "Salem", "Sikkim(Gangtok)", "Tamil Nadu(Chennai)", "Telangana(Hyderabad)", "Tripura(Agartala)", "Uttarakhand(Dehradun)", "Uttar Pradesh(Lucknow)", "West Bengal(Kolkata)"}));
+       comboBox.setBounds(30, 40, 220, 100);
+       add(comboBox);
+	}
+}

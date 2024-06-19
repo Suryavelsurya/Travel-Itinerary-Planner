@@ -1,0 +1,113 @@
+package Travel_itinerary_planner;
+
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import Travel_itinerary_planner.flightpl;
+import javax.swing.JScrollPane;
+import javax.swing.BoxLayout;
+import java.awt.Color;
+import javax.swing.JLabel;
+import java.awt.Font;
+
+public class flightf extends JFrame {
+
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+    private flightscroll[] y = new flightscroll[100];
+	private ResultSet rs;
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					flightf frame = new flightf();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public flightf() {
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(380, 130, 653, 500);
+		contentPane = new JPanel();
+		contentPane.setBackground(new Color(241, 221, 249));
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+contentPane.setLayout(null);
+		System.out.println(flightpl.comboBox.getSelectedItem());
+		JButton btnNewButton = new JButton("back");
+		btnNewButton.setBackground(new Color(0, 0, 160));
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				new dash01().setVisible(true);
+				dispose();
+			}
+		});
+		btnNewButton.setBounds(526, 427, 89, 23);
+		contentPane.add(btnNewButton);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(8, 100, 620, 300);
+		contentPane.add(scrollPane);
+		
+		JPanel panel = new JPanel();
+		scrollPane.setViewportView(panel);
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		
+		JLabel lblFlightTicketBooking = new JLabel("FLIGHT TICKET BOOKING");
+		lblFlightTicketBooking.setForeground(new Color(64, 0, 64));
+		lblFlightTicketBooking.setFont(new Font("Stencil", Font.PLAIN, 28));
+		lblFlightTicketBooking.setBounds(141, 29, 339, 39);
+		contentPane.add(lblFlightTicketBooking);
+		String fr=(String) flightpl.comboBox.getSelectedItem();
+		String to=(String) flightpl.comboBox_1.getSelectedItem();
+		try {
+			int i=0;
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/log-in", "root", "#fanofhegde2505");
+			String sql="select * from flightscrolldb where fromf='"+fr+"' and tof='"+to+"'";
+			PreparedStatement pst = con.prepareStatement(sql);
+			 rs=pst.executeQuery();
+			 while(rs.next()) {
+				 y[i]=new flightscroll();
+				 y[i].flightname.setText(rs.getString(2));
+				 y[i].depature.setText(""+rs.getString(3));
+				 y[i].lblEnd.setText(""+rs.getString(4));
+				 y[i].from.setText(""+rs.getString(5));
+				 y[i].to.setText(""+rs.getString(6));
+				 y[i].price.setText("₹ "+rs.getString(7));
+				 y[i].percen.setText(""+rs.getString(8));
+				 y[i].p=(String)rs.getString(7);
+				 panel.add(y[i]);
+				 i++;
+			 }
+			 
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+	
+}

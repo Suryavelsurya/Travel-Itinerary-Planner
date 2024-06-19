@@ -1,0 +1,117 @@
+package Travel_itinerary_planner;
+
+import java.awt.Color;
+import java.awt.Dimension;
+
+import javax.swing.JPanel;
+import javax.swing.JComboBox;
+import com.toedter.calendar.JDayChooser;
+import com.toedter.calendar.JDateChooser;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+
+public class busespl extends JPanel {
+
+	private static final long serialVersionUID = 1L;
+	static JComboBox comboBox;
+	static JComboBox comboBox_1;
+	private JDateChooser dateChooser_1;
+
+	/**
+	 * Create the panel.
+	 */
+	public busespl() {
+		setBackground(new Color(221, 236, 238));
+	       setPreferredSize(new Dimension(1080,180));
+	       setLayout(null);
+	       
+	       JLabel lblNewLabel_2_1_1 = new JLabel("Tuesday");
+	       lblNewLabel_2_1_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+	       lblNewLabel_2_1_1.setBounds(910, 115, 100, 20);
+	       add(lblNewLabel_2_1_1);
+	       
+	       JLabel lblNewLabel_3_1_1 = new JLabel("Jun'24");
+	       lblNewLabel_3_1_1.setFont(new Font("Tahoma", Font.PLAIN, 17));
+	       lblNewLabel_3_1_1.setBounds(952, 74, 70, 50);
+	       add(lblNewLabel_3_1_1);
+	       
+	       JLabel lblNewLabel_3 = new JLabel("18");
+	       lblNewLabel_3.setForeground(Color.RED);
+	       lblNewLabel_3.setFont(new Font("Tahoma", Font.BOLD, 28));
+	       lblNewLabel_3.setBounds(910, 70, 46, 50);
+	       add(lblNewLabel_3);
+	       
+	       JLabel lblNewLabel_2 = new JLabel("Travel Date");
+	       lblNewLabel_2.setFont(new Font("Tahoma", Font.BOLD, 13));
+	       lblNewLabel_2.setBounds(910, 45, 100, 20);
+	       add(lblNewLabel_2);
+	       
+	       JLabel lblNewLabel_1_1_1 = new JLabel(" India");
+	       lblNewLabel_1_1_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+	       lblNewLabel_1_1_1.setBounds(476, 117, 120, 14);
+	       add(lblNewLabel_1_1_1);
+	       
+	       JLabel lblNewLabel_1_1_2_1 = new JLabel(" To City/Catagory");
+	       lblNewLabel_1_1_2_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+	       lblNewLabel_1_1_2_1.setBounds(476, 48, 153, 13);
+	       add(lblNewLabel_1_1_2_1);
+	       
+	       JLabel lblNewLabel_1_1 = new JLabel("  India");
+	       lblNewLabel_1_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+	       lblNewLabel_1_1.setBounds(44, 116, 120, 14);
+	       add(lblNewLabel_1_1);
+	       
+	       JLabel lblNewLabel_1 = new JLabel(" From City");
+	       lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 13));
+	       lblNewLabel_1.setBounds(47, 47, 81, 14);
+	       add(lblNewLabel_1);
+	       
+	       JLabel lblPuneMaharashtra = new JLabel("Erode");
+	       lblPuneMaharashtra.setHorizontalAlignment(SwingConstants.LEFT);
+	       lblPuneMaharashtra.setFont(new Font("Tahoma", Font.BOLD, 20));
+	       lblPuneMaharashtra.setBounds(476, 40, 200, 100);
+	       add(lblPuneMaharashtra);
+	       
+	       JLabel lblNewDelhidelhi = new JLabel("Chennai");
+	       lblNewDelhidelhi.setHorizontalAlignment(SwingConstants.LEFT);
+	       lblNewDelhidelhi.setFont(new Font("Tahoma", Font.BOLD, 20));
+	       lblNewDelhidelhi.setBounds(44, 40, 200, 100);
+	       add(lblNewDelhidelhi);
+	       
+	      comboBox = new JComboBox();
+	      comboBox.addActionListener(new ActionListener() {
+	      	public void actionPerformed(ActionEvent e) {
+	      		lblNewDelhidelhi.setVisible(false);
+	      	}
+	      });
+	       comboBox.setModel(new DefaultComboBoxModel(new String[] {"", "Chennai", "Erode", "Thoothukudi", "Nammakal", "Trichy", "Salem"}));
+	       comboBox.setBounds(30, 40, 380, 100);
+	       add(comboBox);
+	       
+	       dateChooser_1 = new JDateChooser();
+	       dateChooser_1.getCalendarButton().addActionListener(new ActionListener() {
+	       	public void actionPerformed(ActionEvent e) {
+	       		lblNewLabel_3.setVisible(false);
+	       		lblNewLabel_3_1_1.setVisible(false);
+	       		lblNewLabel_2_1_1.setVisible(false);
+	       	}
+	       });
+	       dateChooser_1.setBounds(900, 40, 150, 100);
+	       add(dateChooser_1);
+	       
+	        comboBox_1 = new JComboBox();
+	        comboBox_1.addActionListener(new ActionListener() {
+	        	public void actionPerformed(ActionEvent e) {
+	        		lblPuneMaharashtra.setVisible(false);
+	        	}
+	        });
+	       comboBox_1.setModel(new DefaultComboBoxModel(new String[] {"", "Chennai", "Erode", "Thoothukudi", "Nammakal", "Trichy"}));
+	       comboBox_1.setBounds(460, 40, 380, 100);
+	       add(comboBox_1);
+
+	}
+}

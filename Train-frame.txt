@@ -1,0 +1,120 @@
+package Travel_itinerary_planner;
+
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.Date;
+
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.border.EmptyBorder;
+import java.awt.Color;
+import javax.swing.JLabel;
+import java.awt.Font;
+
+public class trainf extends JFrame {
+
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+	private spa[] y = new spa[100];
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					trainf frame = new trainf();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public trainf() {
+		setTitle("train");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(380, 130, 653, 500);
+		contentPane = new JPanel();
+		contentPane.setBackground(new Color(210, 225, 238));
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+contentPane.setLayout(null);
+		
+		JButton btnNewButton = new JButton("Back");
+		btnNewButton.setBackground(new Color(51, 96, 200));
+		btnNewButton.setForeground(new Color(255, 255, 255));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				new dash01().setVisible(true);
+				dispose();
+			}
+		});
+		btnNewButton.setBounds(540, 430, 89, 23);
+		contentPane.add(btnNewButton);
+		
+		
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(10, 100, 620, 300);
+		contentPane.add(scrollPane);
+		
+		JPanel panel = new JPanel();
+		scrollPane.setViewportView(panel);
+		
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		
+		JLabel lblNewLabel = new JLabel("Railway Reservation");
+		lblNewLabel.setForeground(new Color(64, 0, 64));
+		lblNewLabel.setFont(new Font("Stencil", Font.PLAIN, 28));
+		lblNewLabel.setBounds(160, 25, 339, 39);
+		contentPane.add(lblNewLabel);
+		try {
+			Class.forName("com.mysql.cj.jdbc.Driver");
+			//System.out.println(ps);
+			
+			Connection con = (Connection)DriverManager.getConnection("jdbc:mysql://localhost:3306/log-in","root","#fanofhegde2505");
+			String s=(String) trainpl.comboBox.getSelectedItem();
+			String d=(String) trainpl.comboBox_1.getSelectedItem();
+	        Date c= trainpl.dateChooser_1.getDate();
+			System.out.println(s);
+			System.out.println(d);
+	    	System.out.println(c);
+			String sql= "select * from traindetail where Train_From='"+s+"' and Train_To='"+d+"'";
+			PreparedStatement pst = con.prepareStatement(sql);
+			ResultSet rs = pst.executeQuery();
+			int i=0;
+			while(rs.next()) {
+				y[i]=new spa();
+				y[i].train_name.setText(rs.getString("trainname"));
+				y[i].lblNewLabel.setText(rs.getString(1));
+				y[i].from.setText(s);
+				y[i].to.setText(d);
+			  y[i].lblNewLabel_3_1.setText(""+c);
+			  y[i].lblNewLabel_5.setText("₹ "+rs.getString(7));
+			  y[i].lblSc.setText(rs.getString(8));
+			  y[i].lblNewLabel_3_2.setText("From:"+rs.getString(5));
+			  y[i].lblNewLabel_3_3.setText("To:"+rs.getString(6));
+				
+			    panel.add(y[i]);
+			    i++;
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+}

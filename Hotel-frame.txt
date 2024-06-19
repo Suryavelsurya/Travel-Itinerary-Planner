@@ -1,0 +1,93 @@
+package Travel_itinerary_planner;
+
+import java.awt.EventQueue;
+import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.JScrollPane;
+import javax.swing.BoxLayout;
+import javax.swing.JLabel;
+import java.awt.Font;
+import java.awt.Color;
+
+public class hotelf extends JFrame {
+
+	private static final long serialVersionUID = 1L;
+	private JPanel contentPane;
+    private hotpl[] r=new hotpl[4];
+    private String[] im= {"C:\\Users\\Admin\\Music\\img1.jpg","C:\\Users\\Admin\\Music\\img2.jpg","C:\\Users\\Admin\\Music\\img3.jpg","C:\\Users\\Admin\\Music\\img4.jpg"};
+	private String[] lab= {"Taj Lands End","JW Marriott","ITC Maratha - A Luxury Collection Hotel","Grand Hyatt "};
+	private String[] la= {"₹ 2,675","₹ 4,605","₹ 4,970","₹ 3,465"};
+	private String[] lam= {"2 minutes walk to beach view","4.1 km drive to T1 - junction","1.8 km drive to  Hospital And Research Centre"," minutes walk to T1 - Shivaji International Airport"};
+    /**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					hotelf frame = new hotelf();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public hotelf() {
+		setTitle("hotef");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(380, 130, 643, 448);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+
+		setContentPane(contentPane);
+contentPane.setLayout(null);
+		
+		JButton btnNewButton = new JButton("New button");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				new dash01().setVisible(true);
+				dispose();
+			}
+		});
+		btnNewButton.setBounds(500, 375, 89, 23);
+		contentPane.add(btnNewButton);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(45, 89, 531, 280);
+		contentPane.add(scrollPane);
+		
+		JPanel panel = new JPanel();
+		scrollPane.setViewportView(panel);
+		panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+		
+		JLabel lblNewLabel = new JLabel("Book Hotels and Homestays");
+		lblNewLabel.setForeground(new Color(64, 0, 64));
+		lblNewLabel.setFont(new Font("Serif", Font.BOLD, 28));
+		lblNewLabel.setBounds(122, 29, 376, 39);
+		contentPane.add(lblNewLabel);
+		int i=0;
+		while(i<4) {
+			r[i]=new hotpl();
+			r[i].img1.setIcon(new ImageIcon(im[i]));
+			r[i].lblNewLabel.setText(lab[i]);
+			r[i].lblNewLabel_1.setText(la[i]);
+			r[i].lblNewLabel_2.setText(lam[i]);
+			panel.add(r[i]);
+			i++;
+		}
+	}
+
+}
